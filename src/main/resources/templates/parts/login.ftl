@@ -127,7 +127,7 @@
             </div>
         </#if>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <#if !isRegisterForm><a href="/registration">Add new user</a></#if>
+        <#if !isRegisterForm><a href="/registration" class="btn btn-primary">Add new user</a></#if>
         <button type="submit" value="Sign In" class="btn btn-primary">
             <#if isRegisterForm>
                 Create

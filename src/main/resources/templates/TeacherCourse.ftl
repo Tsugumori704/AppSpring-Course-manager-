@@ -3,11 +3,11 @@
 
 <@pt.page>
 
-    Редактирование курса
-    ${user.firstName}
-    ${user.lastName}
-    ${user.surName}
-    ${user.id}
+<#--    Редактирование курса-->
+<#--    ${user.firstName}-->
+<#--    ${user.lastName}-->
+<#--    ${user.surName}-->
+<#--    ${user.id}-->
 
     <h3>Add Course</h3>
     <#if savingReport??><div class="alert alert-danger" role="alert">${savingReport}</div></#if>
@@ -34,6 +34,9 @@
                 <input type="text" name="description"
                        class="form-control ${(descriptionError??)?string('is-invalid', '')}"
                        value="<#if course??>${course.description}</#if>" placeholder="Enter the description">
+
+<#--                <textarea name="description" class="form-control" cols="40" rows="3" placeholder="Enter the description"></textarea>-->
+
                 <#if descriptionError??>
                     <div class="invalid-feedback">
                         ${descriptionError}

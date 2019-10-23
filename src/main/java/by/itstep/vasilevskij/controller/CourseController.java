@@ -3,7 +3,6 @@ package by.itstep.vasilevskij.controller;
 import by.itstep.vasilevskij.domain.Course;
 import by.itstep.vasilevskij.domain.CourseGroup;
 import by.itstep.vasilevskij.domain.User;
-import by.itstep.vasilevskij.repository.CourseGroupRepo;
 import by.itstep.vasilevskij.service.CourseGroupService;
 import by.itstep.vasilevskij.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,8 @@ public class CourseController {
 
     @GetMapping
     public String courseList(Model model){
-        model.addAttribute("courseList", courseService.coursesAll());
+
+        model.addAttribute("courseList", courseService.coursesActive());
         return "course";
     }
 

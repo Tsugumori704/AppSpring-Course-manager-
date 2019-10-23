@@ -41,6 +41,11 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+    public boolean findUser(User user){
+        Optional<User> userById = userRepo.findById(user.getId());
+        return true;
+    }
+
 
     public boolean addUser(User user){
 

@@ -3,8 +3,8 @@ package by.itstep.vasilevskij.controller;
 import by.itstep.vasilevskij.domain.Course;
 import by.itstep.vasilevskij.domain.User;
 import by.itstep.vasilevskij.service.CourseService;
+import by.itstep.vasilevskij.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -31,7 +31,10 @@ public class TeacherCourseController {
             Model model,
             @AuthenticationPrincipal User user
             ){
-        model.addAttribute("user", user);
+        Iterable<Course> teachersCourses = courseService.teachersCourses(user.getId());
+
+        model.addAttribute("teachersCourses",teachersCourses);
+//        model.addAttribute("user", user);
         return "TeacherCourse";
     }
 
@@ -44,10 +47,10 @@ public class TeacherCourseController {
             @RequestParam("startDay") String startDay,
             @RequestParam("EndDay") String endDay
             ) {
-        Iterable<Course> courses = courseService.coursesAll();
+//        Iterable<Course> courses = courseService.coursesAll();
 
         model.addAttribute("course", course);
-        model.addAttribute("courses", courses);
+//        model.addAttribute("courses", courses);
         model.addAttribute("user", user);
 
 
@@ -78,7 +81,7 @@ public class TeacherCourseController {
 
             model.addAttribute("startDay", course.getStartDate());
             model.addAttribute("endDay", course.getEndDate());
-            model.addAttribute("courses", courses);
+//            model.addAttribute("courses", courses);
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
             model.addAttribute("course", course);

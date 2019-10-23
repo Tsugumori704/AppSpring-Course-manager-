@@ -2,7 +2,7 @@
 <#import "login.ftl" as l>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Spring Boot App</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -14,8 +14,17 @@
                 <a class="nav-link" href="/course">Course</a>
             </li>
             <#if isAdmin || isTeacher>
-                <li class="nav-item">
-                    <a class="nav-link" href="/TeacherCourse">Teacher Course</a>
+                <li class="nav-item dropdown">
+<#--                    <a class="nav-link" href="/TeacherCourse">Teacher Course</a>-->
+
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Teacher Course
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/TeacherCourse">Add Teacher Course</a>
+                        <a class="dropdown-item" href="MyTeacherCourse">Teacher Course</a>
+                    </div>
+
                 </li>
             </#if>
 <#--            <#if isAdmin || isTeacher>-->

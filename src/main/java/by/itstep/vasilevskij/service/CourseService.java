@@ -10,6 +10,14 @@ public class CourseService {
     @Autowired
     CourseRepo courseRepo;
 
+    public Iterable<Course> teachersCourses(Long id){
+        return courseRepo.findByTeacherId_Id(id);
+    }
+
+    public Iterable<Course> coursesActive(){
+        return courseRepo.findByIsActiveTrue();
+    }
+
     public Iterable<Course> coursesAll(){
         return courseRepo.findAll();
     }
@@ -17,5 +25,15 @@ public class CourseService {
     public boolean addCourse(Course course){
         courseRepo.save(course);
         return true;
+    }
+
+    public void remove(Course removeCourse) {
+        removeCourse.setActive(false);
+        courseRepo.save(removeCourse);
+    }
+
+    public void reaper(Course reaperCourse) {
+        reaperCourse.setActive(true);
+        courseRepo.save(reaperCourse);
     }
 }
