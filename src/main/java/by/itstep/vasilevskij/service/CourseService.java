@@ -18,5 +18,4 @@ public class CourseService {
         courseRepo.save(course);
         return true;
     }
-
 }

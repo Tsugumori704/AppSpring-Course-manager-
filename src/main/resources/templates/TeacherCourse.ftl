@@ -4,15 +4,20 @@
 <@pt.page>
 
     Редактирование курса
+    ${user.firstName}
+    ${user.lastName}
+    ${user.surName}
+    ${user.id}
 
-    <h3>Edit Course</h3>
+    <h3>Add Course</h3>
     <#if savingReport??><div class="alert alert-danger" role="alert">${savingReport}</div></#if>
 
     <div class="form-group mt-3">
         <form method="post">
 
             <input type="hidden" name="id" value="<#if course?? && course.id??>${course.id}</#if>">
-            <input type="hidden" name="_csrf" value="${_csrf.token}" />
+<#--            <input type="hidden" name="teacherId" value="<#if user.id??>${user.id}</#if>">-->
+
 
             <div class="form-group">
                 <input type="text" name="courseName"
@@ -26,7 +31,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" name="descriptionName"
+                <input type="text" name="description"
                        class="form-control ${(descriptionError??)?string('is-invalid', '')}"
                        value="<#if course??>${course.description}</#if>" placeholder="Enter the description">
                 <#if descriptionError??>
@@ -39,7 +44,7 @@
             <div class="form-group">
                 <input type="date" name="startDay"
                        class="form-control ${(startDateError??)?string('is-invalid', '')}"
-                       value="<#if course??>${course.startDate}</#if>" placeholder="Enter the startDate">
+                       value="<#if course?? && course.startDate??>${course.startDate}</#if>" placeholder="Enter the startDate">
                 <#if startDateError??>
                     <div class="invalid-feedback">
                         ${startDateError}
@@ -50,7 +55,7 @@
             <div class="form-group">
                 <input type="date" name="EndDay"
                        class="form-control ${(endDateError??)?string('is-invalid', '')}"
-                       value="<#if course??>${course.endDate}</#if>" placeholder="Enter the endDate">
+                       value="<#if course?? && course.endDate??>${course.endDate}</#if>" placeholder="Enter the endDate">
                 <#if endDateError??>
                     <div class="invalid-feedback">
                         ${endDateError}
@@ -67,6 +72,7 @@
                     </#if>
                 </button>
             </div>
+            <input type="hidden" name="_csrf" value="${_csrf.token}" />
         </form>
     </div>
 

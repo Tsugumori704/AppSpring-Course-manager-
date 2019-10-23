@@ -1,15 +1,18 @@
 package by.itstep.vasilevskij.domain;
 
-import by.itstep.vasilevskij.domain.AbstractClasses.AbstractEntity;
 import lombok.Data;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Data
 @Entity
-public class Course extends AbstractEntity {
+public class Course {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @NotBlank(message = "Заполни поле")
     private String courseName;
@@ -20,4 +23,10 @@ public class Course extends AbstractEntity {
     private LocalDate startDate;
 
     private LocalDate endDate;
+
+    private boolean isActive = false;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teacher_id")
+    private User teacherId;
 }

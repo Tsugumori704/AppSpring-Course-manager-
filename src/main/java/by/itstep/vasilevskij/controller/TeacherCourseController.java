@@ -1,6 +1,7 @@
 package by.itstep.vasilevskij.controller;
 
 import by.itstep.vasilevskij.domain.Course;
+import by.itstep.vasilevskij.domain.User;
 import by.itstep.vasilevskij.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,16 +28,19 @@ public class TeacherCourseController {
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('TEACHER')")
     @GetMapping
     public String main(
-            Model model
+            Model model,
+            @AuthenticationPrincipal User user
             ){
+        model.addAttribute("user", user);
         return "TeacherCourse";
     }
 
     @PostMapping
     public String addTeacherCourse(
-            Course course,
+            @Valid Course course,
             BindingResult bindingResult,
             Model model,
+            @AuthenticationPrincipal User user,
             @RequestParam("startDay") String startDay,
             @RequestParam("EndDay") String endDay
             ) {
@@ -44,6 +48,10 @@ public class TeacherCourseController {
 
         model.addAttribute("course", course);
         model.addAttribute("courses", courses);
+        model.addAttribute("user", user);
+
+
+
 
 
         if (!startDay.isEmpty()){
@@ -78,8 +86,17 @@ public class TeacherCourseController {
             return "TeacherCourse";
 
         } else {
-            courseService.addCourse(course);
-            return "redirect:/TeacherCourse";
+            if (course.getStartDate().isAfter(course.getEndDate())){
+                model.addAttribute("savingReport", "Ошибка записи данныйх");
+                return "TeacherCourse";
+            } else {
+                course.setTeacherId(user);
+                courseService.addCourse(course);
+                return "redirect:/TeacherCourse";
+            }
+
+//            courseService.addCourse(course);
+//            return "redirect:TeacherCourse";
         }
 
 

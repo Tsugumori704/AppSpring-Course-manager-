@@ -8,7 +8,7 @@ known = Session.SPRING_SECURITY_CONTEXT??
     name = user.getUsername()
     isAdmin = user.isAdmin()
     isTeacher = user.isTeacher()
-<#--    currentUserId = user.getId()-->
+    currentUserId = user.getId()
     >
 <#else >
     <#assign
