@@ -1,11 +1,15 @@
 package by.itstep.vasilevskij.domain;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"course_id", "user_id"})
+})
 public class CourseGroup {
 
     @Id

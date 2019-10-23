@@ -3,31 +3,56 @@
 
 <@pt.page>
 
-    Описание курса
-    ${course.courseName}
-    ${course.description}
-    course.ID=
-    ${course.id}
+<#--    Описание курса-->
+<#--    ${course.courseName}-->
+<#--    ${course.description}-->
+<#--    course.ID=-->
+<#--    ${course.id}-->
 
-    ${user.email}
-    ${user.firstName}
-    user.ID=
-    ${user.id}
+<#--    ${user.email}-->
+<#--    ${user.firstName}-->
+<#--    user.ID=-->
+<#--    ${user.id}-->
 
-    <a class="btn btn-secondary" href="#" role="button">sign up</a>
+    <div class="card text-center">
+        <div class="card-header">
+            Course
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">${course.courseName}</h5>
+            <p class="card-text">${course.description}</p>
+            <div class="form-group mt-3">
+                <form method="post">
 
-    <div class="form-group mt-3">
-        <form method="post">
+                    <input type="hidden" name="id" value="<#if course?? && course.id??>${course.id}</#if>">
 
-            <input type="hidden" name="id" value="<#if course?? && course.id??>${course.id}</#if>">
-
-            <div class="form-group mt-2">
-                <button type="submit" class="btn btn-primary">
-                    sign up
-                </button>
+                    <div class="form-group mt-2">
+                        <button type="submit" class="btn btn-primary">
+                            sign up
+                        </button>
+                    </div>
+                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                </form>
             </div>
-            <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        </form>
+        </div>
+        <div class="card-footer text-muted">
+<#--            2 days ago-->
+        </div>
     </div>
+
+
+<#--    <div class="form-group mt-3">-->
+<#--        <form method="post">-->
+
+<#--            <input type="hidden" name="id" value="<#if course?? && course.id??>${course.id}</#if>">-->
+
+<#--            <div class="form-group mt-2">-->
+<#--                <button type="submit" class="btn btn-primary">-->
+<#--                    sign up-->
+<#--                </button>-->
+<#--            </div>-->
+<#--            <input type="hidden" name="_csrf" value="${_csrf.token}" />-->
+<#--        </form>-->
+<#--    </div>-->
 
 </@pt.page>
