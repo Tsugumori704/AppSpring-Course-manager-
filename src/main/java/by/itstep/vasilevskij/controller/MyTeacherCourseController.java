@@ -23,8 +23,8 @@ public class MyTeacherCourseController {
     public String main(
             Model model,
             @AuthenticationPrincipal User user,
-            @RequestParam(required = false, defaultValue = "") Course removeCourse,
-            @RequestParam (required = true, defaultValue = "") Course reaperCourse
+            @RequestParam(required = false, defaultValue = "") Course deactivationCourse,
+            @RequestParam (required = true, defaultValue = "") Course activationCourse
     ){
         Iterable<Course> teachersCourses = courseService.teachersCourses(user.getId());
 
@@ -33,14 +33,14 @@ public class MyTeacherCourseController {
         /*
         Remove exists car
          */
-        if (removeCourse != null){
-            courseService.remove(removeCourse);
+        if (deactivationCourse != null){
+            courseService.deactivationCourse(deactivationCourse);
         }
         /*
         Reaper exists car
          */
-        if (reaperCourse != null) {
-            courseService.reaper(reaperCourse);
+        if (activationCourse != null) {
+            courseService.activationCourse(activationCourse);
         }
 
         return "MyTeacherCourse";

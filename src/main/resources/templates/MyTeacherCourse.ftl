@@ -6,7 +6,7 @@
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">id</th>
             <th scope="col">teacher</th>
             <th scope="col">courseName</th>
             <th scope="col">startDate</th>
@@ -26,8 +26,8 @@
                 <td>${tCourse.endDate}</td>
                 <td>${tCourse.active?then("true","false")}</td>
                 <td>${tCourse.active?then(
-                    '<a href="MyTeacherCourse?removeCourse=${tCourse.id}"  class="badge badge-pill badge-danger">remove</a>',
-                    '<a href="MyTeacherCourse?reaperCourse=${tCourse.id}"  class="badge badge-pill badge-success">reaper</a>'
+                    '<a href="MyTeacherCourse?deactivationCourse=${tCourse.id}"  class="badge badge-pill badge-danger">deactivation</a>',
+                    '<a href="MyTeacherCourse?activationCourse=${tCourse.id}"  class="badge badge-pill badge-success">activation</a>'
                     )}
                 </td>
             </tr>

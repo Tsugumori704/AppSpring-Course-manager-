@@ -27,12 +27,12 @@ public class CourseService {
         return true;
     }
 
-    public void remove(Course removeCourse) {
+    public void deactivationCourse(Course removeCourse) {
         removeCourse.setActive(false);
         courseRepo.save(removeCourse);
     }
 
-    public void reaper(Course reaperCourse) {
+    public void activationCourse(Course reaperCourse) {
         reaperCourse.setActive(true);
         courseRepo.save(reaperCourse);
     }
