@@ -16,7 +16,7 @@
 
     <div class="card text-center">
         <div class="card-header">
-            Course
+            Course teacher: ${user.firstName} ${user.lastName} ${user.surName}
         </div>
         <div class="card-body">
             <h5 class="card-title">${course.courseName}</h5>

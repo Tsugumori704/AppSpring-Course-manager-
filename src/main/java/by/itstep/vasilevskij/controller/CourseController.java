@@ -49,8 +49,6 @@ public class CourseController {
 
         courseGroupService.addUserInCourse(courseGroup);
 
-//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return "redirect:/course";
     }
-
 }
