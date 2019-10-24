@@ -26,4 +26,6 @@ public class CourseGroup {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User userId;
+
+    private Long gradeOnCourse;
 }

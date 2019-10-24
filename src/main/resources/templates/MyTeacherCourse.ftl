@@ -14,6 +14,7 @@
             <th>isActive</th>
             <th>edit</th>
             <th>changeTeacher</th>
+            <th>group</th>
         </tr>
         </thead>
         <tbody>
@@ -50,6 +51,10 @@
                             Change Teacher
                         </button>
                     </div>
+                </td>
+
+                <td>
+                    <a href="courseGroup/${tCourse.id}">group</a>
                 </td>
             </tr>
         </#list>
