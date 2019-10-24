@@ -38,8 +38,8 @@ create table users (
         primary key (id)
 );
 
-alter table if exists course_group add constraint UKf3ixac3fmnqnjnis6blg8d9av unique (course_id, user_id);
-alter table if exists course add constraint FKbhmlx82vjuwypl8dmfnrbjfhu foreign key (teacher_id) references users;
-alter table if exists course_group add constraint FKkt5730n2360qbi88t2wkdpsyp foreign key (course_id) references course;
-alter table if exists course_group add constraint FK2vn2cblm1bn7qf1o9o1u2h6xx foreign key (user_id) references users;
-alter table if exists user_role add constraint FKj345gk1bovqvfame88rcx7yyx foreign key (user_id) references users;
+alter table if exists course_group add constraint course_group_course_user_uniq unique (course_id, user_id);
+alter table if exists course add constraint teacher_id_fk foreign key (teacher_id) references users;
+alter table if exists course_group add constraint course_group_course_fk foreign key (course_id) references course;
+alter table if exists course_group add constraint course_group_user_fk foreign key (user_id) references users;
+alter table if exists user_role add constraint user_role_fk foreign key (user_id) references users;
