@@ -46,7 +46,6 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-
     public boolean addUser(User user){
 
         User userFromDb = userRepo.findByUsername(user.getUsername());
@@ -111,6 +110,9 @@ public class UserService implements UserDetailsService {
         return userRepo.findAll(Sort.by("username"));
     }
 
+    public List<User> findAllTeacher(){
+        return userRepo.findByRoles(Roles.TEACHER);
+    }
 
     public void saveUser(User user, String username, Map<String, String> form){
 
@@ -130,6 +132,7 @@ public class UserService implements UserDetailsService {
 
         userRepo.save(user);
     }
+
 
 
     public void updateProfile(User user, String password, String email){

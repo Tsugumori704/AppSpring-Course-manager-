@@ -17,12 +17,12 @@
                 <li class="nav-item dropdown">
 <#--                    <a class="nav-link" href="/TeacherCourse">Teacher Course</a>-->
 
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="MyTeacherCourse" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Teacher Course
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/TeacherCourse">Add Teacher Course</a>
-                        <a class="dropdown-item" href="MyTeacherCourse">Teacher Course</a>
+                        <a class="dropdown-item" href="/MyTeacherCourse">Teacher Course</a>
                     </div>
 
                 </li>

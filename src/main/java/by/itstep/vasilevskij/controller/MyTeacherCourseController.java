@@ -3,14 +3,15 @@ package by.itstep.vasilevskij.controller;
 import by.itstep.vasilevskij.domain.Course;
 import by.itstep.vasilevskij.domain.User;
 import by.itstep.vasilevskij.service.CourseService;
+import by.itstep.vasilevskij.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("MyTeacherCourse")
@@ -18,22 +19,30 @@ public class MyTeacherCourseController {
     @Autowired
     CourseService courseService;
 
+    @Autowired
+    UserService userService;
+
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('TEACHER')")
     @GetMapping
     public String main(
             Model model,
             @AuthenticationPrincipal User user,
             @RequestParam(required = false, defaultValue = "") Course deactivationCourse,
-            @RequestParam (required = true, defaultValue = "") Course activationCourse
-    ){
+            @RequestParam(required = true, defaultValue = "") Course activationCourse
+    ) {
         Iterable<Course> teachersCourses = courseService.teachersCourses(user.getId());
+        model.addAttribute("teachersCourses", teachersCourses);
 
-        model.addAttribute("teachersCourses",teachersCourses);
+        List<User> allTeacher = userService.findAllTeacher();
+        model.addAttribute("allTeacher", allTeacher);
+        model.addAttribute("url", "/MyTeacherCourse");
+
+//        model.addAttribute("teacher", teacher);
 
         /*
         Remove exists car
          */
-        if (deactivationCourse != null){
+        if (deactivationCourse != null) {
             courseService.deactivationCourse(deactivationCourse);
         }
         /*
@@ -42,6 +51,20 @@ public class MyTeacherCourseController {
         if (activationCourse != null) {
             courseService.activationCourse(activationCourse);
         }
+
+        return "MyTeacherCourse";
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('TEACHER')")
+    @GetMapping("{course}&{teacher}")
+    public String changeTeacher(
+            Model model,
+            @PathVariable Course course,
+            @PathVariable User teacher
+
+    ){
+        course.setTeacherId(teacher);
+        model.addAttribute("url", "/MyTeacherCourse");
 
         return "MyTeacherCourse";
     }
