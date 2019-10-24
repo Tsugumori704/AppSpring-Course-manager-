@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("MyTeacherCourse")
+@RequestMapping("myTeacherCourse")
 public class MyTeacherCourseController {
     @Autowired
     CourseService courseService;
@@ -35,7 +35,7 @@ public class MyTeacherCourseController {
 
         List<User> allTeacher = userService.findAllTeacher();
         model.addAttribute("allTeacher", allTeacher);
-        model.addAttribute("url", "/MyTeacherCourse");
+        model.addAttribute("url", "/myTeacherCourse");
 
 //        model.addAttribute("teacher", teacher);
 
@@ -52,7 +52,7 @@ public class MyTeacherCourseController {
             courseService.activationCourse(activationCourse);
         }
 
-        return "MyTeacherCourse";
+        return "myTeacherCourse";
     }
 
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('TEACHER')")
@@ -64,8 +64,8 @@ public class MyTeacherCourseController {
 
     ){
         course.setTeacherId(teacher);
-        model.addAttribute("url", "/MyTeacherCourse");
+        model.addAttribute("url", "/myTeacherCourse");
 
-        return "MyTeacherCourse";
+        return "myTeacherCourse";
     }
 }

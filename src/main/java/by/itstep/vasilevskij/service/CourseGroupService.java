@@ -20,12 +20,12 @@ public class CourseGroupService {
 
     public List<CourseGroup> findAllUserInCourse(Long courseId){
         List<CourseGroup> byCourseId = courseGroupRepo.findByCourseId_Id(courseId);
-
         return byCourseId;
     }
 
-    public CourseGroup findUserOnCourse(Long userId){
-       return courseGroupRepo.findByUserId_Id(userId);
+    public List<CourseGroup> findAllCourseInUser(Long userId){
+        List<CourseGroup> byUserId_id = courseGroupRepo.findByUserId_Id(userId);
+        return byUserId_id;
     }
 
 }

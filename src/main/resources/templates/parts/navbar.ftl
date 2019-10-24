@@ -13,16 +13,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="/course">Course</a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/myUserCourse">My course</a>
+            </li>
+
             <#if isAdmin || isTeacher>
                 <li class="nav-item dropdown">
 <#--                    <a class="nav-link" href="/TeacherCourse">Teacher Course</a>-->
 
-                    <a class="nav-link dropdown-toggle" href="MyTeacherCourse" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="myTeacherCourse" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Teacher Course
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/TeacherCourse">Add Teacher Course</a>
-                        <a class="dropdown-item" href="/MyTeacherCourse">Teacher Course</a>
+                        <a class="dropdown-item" href="/teacherCourse">Add Teacher Course</a>
+                        <a class="dropdown-item" href="/myTeacherCourse">Teacher Course</a>
                     </div>
 
                 </li>

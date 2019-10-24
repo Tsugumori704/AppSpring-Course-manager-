@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 @Controller
-@RequestMapping("TeacherCourse")
+@RequestMapping("teacherCourse")
 public class TeacherCourseController {
     @Autowired
     CourseService courseService;
@@ -35,7 +35,7 @@ public class TeacherCourseController {
 
         model.addAttribute("teachersCourses",teachersCourses);
 //        model.addAttribute("user", user);
-        return "TeacherCourse";
+        return "teacherCourse";
     }
 
     @PostMapping
@@ -86,16 +86,16 @@ public class TeacherCourseController {
             model.mergeAttributes(errorsMap);
             model.addAttribute("course", course);
 
-            return "TeacherCourse";
+            return "teacherCourse";
 
         } else {
             if (course.getStartDate().isAfter(course.getEndDate())){
                 model.addAttribute("savingReport", "Ошибка записи данныйх");
-                return "TeacherCourse";
+                return "teacherCourse";
             } else {
                 course.setTeacherId(user);
                 courseService.addCourse(course);
-                return "redirect:/TeacherCourse";
+                return "redirect:/teacherCourse";
             }
 
 //            courseService.addCourse(course);

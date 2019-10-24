@@ -11,10 +11,10 @@
             <th scope="col">courseName</th>
             <th scope="col">startDate</th>
             <th scope="col">endDate</th>
-            <th>isActive</th>
-            <th>edit</th>
-            <th>changeTeacher</th>
-            <th>group</th>
+            <th scope="col">isActive</th>
+            <th scope="col">edit</th>
+            <th scope="col">changeTeacher</th>
+            <th scope="col">group</th>
         </tr>
         </thead>
         <tbody>
@@ -29,8 +29,8 @@
                 <td>${tCourse.endDate}</td>
                 <td>${tCourse.active?then("true","false")}</td>
                 <td>${tCourse.active?then(
-                    '<a href="MyTeacherCourse?deactivationCourse=${tCourse.id}"  class="badge badge-pill badge-danger">deactivation</a>',
-                    '<a href="MyTeacherCourse?activationCourse=${tCourse.id}"  class="badge badge-pill badge-success">activation</a>'
+                    '<a href="myTeacherCourse?deactivationCourse=${tCourse.id}"  class="badge badge-pill badge-danger">deactivation</a>',
+                    '<a href="myTeacherCourse?activationCourse=${tCourse.id}"  class="badge badge-pill badge-success">activation</a>'
                     )}
                 </td>
 
@@ -43,7 +43,7 @@
                             </button>
                             <div class="dropdown-menu">
                                 <#list allTeacher as Teacher>
-                                    <a class="dropdown-item" href="MyTeacherCourse/${tCourse.id}&${Teacher.id}">${Teacher.firstName} ${Teacher.lastName} ${Teacher.surName}</a>
+                                    <a class="dropdown-item" href="myTeacherCourse/${tCourse.id}&${Teacher.id}">${Teacher.firstName} ${Teacher.lastName} ${Teacher.surName}</a>
                                 </#list>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                 </td>
 
                 <td>
-                    <a href="courseGroup/${tCourse.id}">group</a>
+                    <a href="courseGroup/${tCourse.id}" class="btn btn-primary">group</a>
                 </td>
             </tr>
         </#list>
@@ -63,7 +63,7 @@
             <div class="alert alert-success" role="alert">
                 Teacher changed
             </div>
-        <a class="btn btn-primary" href="/MyTeacherCourse" >Return</a>
+        <a class="btn btn-primary" href="/myTeacherCourse" >Return</a>
         </#if>
 
         </tbody>
