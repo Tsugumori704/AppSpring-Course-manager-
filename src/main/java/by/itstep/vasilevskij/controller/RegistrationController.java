@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Map;
 
@@ -51,6 +52,7 @@ public class RegistrationController {
     public String addUser(
             @RequestParam("passwordConfirm") String passwordConfirm,
             @RequestParam("g-recaptcha-response") String captchaResponce,
+            @RequestParam("birth") String birth,
             @Valid User user,
             BindingResult bindingResult,
             Model model
@@ -61,6 +63,10 @@ public class RegistrationController {
         System.out.println(captchaResponseDto.toString());
         if (!captchaResponseDto.isSuccess()){
             model.addAttribute("captchaError", "Fill Captcha");
+        }
+
+        if (!birth.isEmpty()){
+            user.setBirthDate(LocalDate.parse(birth));
         }
 
         boolean isConfirmEmpty = StringUtils.isEmpty(passwordConfirm);
