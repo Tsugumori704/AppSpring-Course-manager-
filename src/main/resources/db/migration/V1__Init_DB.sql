@@ -2,7 +2,7 @@ create sequence hibernate_sequence start 1 increment 1;
 
 create table course (
         id int8 not null,
-        course_name varchar(255),
+        course_name varchar(255) unique,
         description varchar(2048),
         end_date date,
         is_active boolean not null,

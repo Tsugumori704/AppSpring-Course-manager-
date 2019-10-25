@@ -53,10 +53,6 @@ public class TeacherCourseController {
 //        model.addAttribute("courses", courses);
         model.addAttribute("user", user);
 
-
-
-
-
         if (!startDay.isEmpty()){
             course.setStartDate(LocalDate.parse(startDay));
         }

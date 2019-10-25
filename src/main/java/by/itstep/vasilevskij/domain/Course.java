@@ -1,6 +1,7 @@
 package by.itstep.vasilevskij.domain;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -14,6 +15,7 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @UniqueElements
     @NotBlank(message = "Заполни поле")
     private String courseName;
 
