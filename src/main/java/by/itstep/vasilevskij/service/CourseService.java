@@ -11,19 +11,19 @@ public class CourseService {
     @Autowired
     CourseRepo courseRepo;
 
-    public Iterable<Course> teachersCourses(Long id){
+    public Iterable<Course> teachersCourses(Long id) {
         return courseRepo.findByTeacherId_Id(id, Sort.by("courseName"));
     }
 
-    public Iterable<Course> coursesActive(){
+    public Iterable<Course> coursesActive() {
         return courseRepo.findByIsActiveTrue();
     }
 
-    public Iterable<Course> coursesAll(){
+    public Iterable<Course> coursesAll() {
         return courseRepo.findAll();
     }
 
-    public boolean addCourse(Course course){
+    public boolean addCourse(Course course) {
         courseRepo.save(course);
         return true;
     }

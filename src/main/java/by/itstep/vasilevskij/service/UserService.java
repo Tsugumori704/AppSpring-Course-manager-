@@ -3,7 +3,6 @@ package by.itstep.vasilevskij.service;
 import by.itstep.vasilevskij.domain.Roles;
 import by.itstep.vasilevskij.domain.User;
 import by.itstep.vasilevskij.repository.UserRepo;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;

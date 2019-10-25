@@ -27,20 +27,17 @@ public class CourseGroupController {
                        @PathVariable Course course,
                        @RequestParam(defaultValue = "") CourseGroup courseGroupMark,
                        @RequestParam(defaultValue = "") Long Mark
-
-    ){
-
+    ) {
 
         model.addAttribute("courseGroup", course);
         List<CourseGroup> allUserInCourse = courseGroupService.findAllUserInCourse(course.getId());
-        Collections.sort(allUserInCourse,(o1, o2) -> o1.getUserId().getFirstName().compareTo(o2.getUserId().getFirstName()));
+        Collections.sort(allUserInCourse, (o1, o2) -> o1.getUserId().getFirstName().compareTo(o2.getUserId().getFirstName()));
         model.addAttribute("allUserInCourse", allUserInCourse);
 
-        if (courseGroupMark!= null){
+        if (courseGroupMark != null) {
             courseGroupMark.setGradeOnCourse(Mark);
             courseGroupService.addUserInCourse(courseGroupMark);
         }
-
 
         return "courseGroup";
     }

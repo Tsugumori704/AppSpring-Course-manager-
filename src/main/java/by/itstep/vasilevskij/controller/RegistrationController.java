@@ -22,7 +22,7 @@ import java.util.Map;
 
 @Controller
 public class RegistrationController {
-    private final static String CAPTCHA_URL= "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
+    private final static String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
 
     @Autowired
     private UserService userService;
@@ -34,12 +34,12 @@ public class RegistrationController {
     RestTemplate restTemplate;
 
     @GetMapping("/main")
-    public String main(){
-       return  "main";
+    public String main() {
+        return "main";
     }
 
     @GetMapping("/")
-    public String standarts(){
+    public String standarts() {
         return "redirect:main";
     }
 
@@ -56,39 +56,39 @@ public class RegistrationController {
             @Valid User user,
             BindingResult bindingResult,
             Model model
-    ){
+    ) {
         String url = String.format(CAPTCHA_URL, secret, captchaResponce);
         System.out.println(url);
         CaptchaResponseDto captchaResponseDto = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
         System.out.println(captchaResponseDto.toString());
-        if (!captchaResponseDto.isSuccess()){
+        if (!captchaResponseDto.isSuccess()) {
             model.addAttribute("captchaError", "Fill Captcha");
         }
 
-        if (!birth.isEmpty()){
+        if (!birth.isEmpty()) {
             user.setBirthDate(LocalDate.parse(birth));
         }
 
         boolean isConfirmEmpty = StringUtils.isEmpty(passwordConfirm);
 
         if (isConfirmEmpty) {
-            model.addAttribute("passwordConfirmError","Password confirmation can't be empty");
+            model.addAttribute("passwordConfirmError", "Password confirmation can't be empty");
 
         }
 
-        if (user.getPassword() != null && !user.getPassword().equals(passwordConfirm)){
+        if (user.getPassword() != null && !user.getPassword().equals(passwordConfirm)) {
             model.addAttribute("passwordError", "Passwords are differents!");
 
         }
 
-        if (isConfirmEmpty || bindingResult.hasErrors() /*|| !captchaResponseDto.success*/){
+        if (isConfirmEmpty || bindingResult.hasErrors() /*|| !captchaResponseDto.success*/) {
             Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errors);
 
             return "registration";
         }
 
-        if(!userService.addUser(user)){
+        if (!userService.addUser(user)) {
             model.addAttribute("usernameError", "User exists!");
 
             return "registration";
@@ -101,10 +101,10 @@ public class RegistrationController {
     }
 
     @GetMapping("/activate/{code}")
-    public String activate(Model model, @PathVariable String code){
+    public String activate(Model model, @PathVariable String code) {
         boolean isActivated = userService.activateUser(code);
 
-        if(isActivated){
+        if (isActivated) {
             model.addAttribute("messageType", "success");
             model.addAttribute("message", "User successfully activated");
         } else {

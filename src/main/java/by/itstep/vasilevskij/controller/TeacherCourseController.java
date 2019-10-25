@@ -3,7 +3,6 @@ package by.itstep.vasilevskij.controller;
 import by.itstep.vasilevskij.domain.Course;
 import by.itstep.vasilevskij.domain.User;
 import by.itstep.vasilevskij.service.CourseService;
-import by.itstep.vasilevskij.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -34,7 +33,6 @@ public class TeacherCourseController {
         Iterable<Course> teachersCourses = courseService.teachersCourses(user.getId());
 
         model.addAttribute("teachersCourses",teachersCourses);
-//        model.addAttribute("user", user);
         return "teacherCourse";
     }
 
@@ -47,10 +45,8 @@ public class TeacherCourseController {
             @RequestParam("startDay") String startDay,
             @RequestParam("EndDay") String endDay
             ) {
-//        Iterable<Course> courses = courseService.coursesAll();
 
         model.addAttribute("course", course);
-//        model.addAttribute("courses", courses);
         model.addAttribute("user", user);
 
         if (!startDay.isEmpty()){
@@ -59,7 +55,6 @@ public class TeacherCourseController {
         if (!endDay.isEmpty()){
             course.setEndDate(LocalDate.parse(endDay));
         }
-//        courseService.addCourse(course);
 
         if (bindingResult.hasErrors() || startDay.isEmpty() || endDay.isEmpty()){
 
@@ -77,7 +72,6 @@ public class TeacherCourseController {
 
             model.addAttribute("startDay", course.getStartDate());
             model.addAttribute("endDay", course.getEndDate());
-//            model.addAttribute("courses", courses);
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
             model.addAttribute("course", course);
@@ -93,15 +87,6 @@ public class TeacherCourseController {
                 courseService.addCourse(course);
                 return "redirect:/teacherCourse";
             }
-
-//            courseService.addCourse(course);
-//            return "redirect:TeacherCourse";
         }
-
-
-
-//        courseService.addCourse(course);
-//        return "redirect:/TeacherCourse";
     }
-
 }

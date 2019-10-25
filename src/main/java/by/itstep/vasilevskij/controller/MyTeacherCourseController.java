@@ -37,8 +37,6 @@ public class MyTeacherCourseController {
         model.addAttribute("allTeacher", allTeacher);
         model.addAttribute("url", "/myTeacherCourse");
 
-//        model.addAttribute("teacher", teacher);
-
         /*
         Remove exists car
          */
@@ -62,7 +60,7 @@ public class MyTeacherCourseController {
             @PathVariable Course course,
             @PathVariable User teacher
 
-    ){
+    ) {
         course.setTeacherId(teacher);
         model.addAttribute("url", "/myTeacherCourse");
 

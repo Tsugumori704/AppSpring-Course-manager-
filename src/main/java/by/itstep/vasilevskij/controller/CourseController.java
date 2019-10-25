@@ -26,16 +26,15 @@ public class CourseController {
     private CourseGroupService courseGroupService;
 
     @GetMapping
-    public String courseList(Model model){
+    public String courseList(Model model) {
 
         model.addAttribute("courseList", courseService.coursesActive());
         return "course";
     }
 
     @GetMapping("{course}")
-    public String courseDetails(@PathVariable Course course, Model model){
+    public String courseDetails(@PathVariable Course course, Model model) {
         model.addAttribute("course", course);
-//        model.addAttribute("user", user.getUsername());
 
         return "courseDetails";
     }
@@ -43,7 +42,7 @@ public class CourseController {
     @PostMapping("{course}")
     public String courseJoinUser(@Valid CourseGroup courseGroup,
                                  @PathVariable Course course,
-                                 @AuthenticationPrincipal User user){
+                                 @AuthenticationPrincipal User user) {
         courseGroup.setCourseId(course);
         courseGroup.setUserId(user);
 
