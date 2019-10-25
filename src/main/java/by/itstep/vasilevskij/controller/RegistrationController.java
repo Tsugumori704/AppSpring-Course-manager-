@@ -1,7 +1,7 @@
 package by.itstep.vasilevskij.controller;
 
 import by.itstep.vasilevskij.domain.User;
-import by.itstep.vasilevskij.dto.CaptchaResponseDto;
+import by.itstep.vasilevskij.domain.dto.CaptchaResponseDto;
 import by.itstep.vasilevskij.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,16 +51,15 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String addUser(
             @RequestParam("passwordConfirm") String passwordConfirm,
-            @RequestParam("g-recaptcha-response") String captchaResponce,
+            @RequestParam("g-recaptcha-response") String captchaResponse,
             @RequestParam("birth") String birth,
             @Valid User user,
             BindingResult bindingResult,
             Model model
     ) {
-        String url = String.format(CAPTCHA_URL, secret, captchaResponce);
-        System.out.println(url);
+        String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto captchaResponseDto = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
-        System.out.println(captchaResponseDto.toString());
+
         if (!captchaResponseDto.isSuccess()) {
             model.addAttribute("captchaError", "Fill Captcha");
         }
@@ -73,20 +72,20 @@ public class RegistrationController {
 
         if (isConfirmEmpty) {
             model.addAttribute("passwordConfirmError", "Password confirmation can't be empty");
-
         }
 
         if (user.getPassword() != null && !user.getPassword().equals(passwordConfirm)) {
             model.addAttribute("passwordError", "Passwords are differents!");
-
         }
 
-        if (isConfirmEmpty || bindingResult.hasErrors() /*|| !captchaResponseDto.success*/) {
+
+
+        if (isConfirmEmpty || bindingResult.hasErrors() || !captchaResponseDto.isSuccess()) {
             Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errors);
-
             return "registration";
         }
+
 
         if (!userService.addUser(user)) {
             model.addAttribute("usernameError", "User exists!");

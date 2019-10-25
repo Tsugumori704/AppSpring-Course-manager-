@@ -103,7 +103,7 @@
                 <div class="col-sm-6">
                     <input type="date" name="birth"
                            class="form-control ${(birthDateError??)?string('is-invalid', '')}" placeholder="birthDate"
-                           value="<#if user??>${user.birthDate}</#if>"/>
+                           value="<#if user?? && user.birthDate??>${user.birthDate}</#if>"/>
                     <#if birthDateError??>
                         <div class="invalid-feedback">
                             ${birthDateError}
@@ -118,7 +118,7 @@
 
             <!--Captcha-->
             <div class="col-sm-4 mb-2">
-                <div class="g-recaptcha" data-sitekey="6LcWWbcUAAAAACalmOS_jK4jFzZIk0eUXUQz1JqC"></div>
+                <div class="g-recaptcha" data-sitekey="6Lc-e78UAAAAAF4sRtddFhfdw9mDTzJEuxDf5G8i"></div>
                 <#if captchaError??>
                     <div class="alert alert-danger" role="alert">
                         ${captchaError}

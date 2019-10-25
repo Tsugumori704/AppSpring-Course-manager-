@@ -3,5 +3,5 @@
 
 <@pt.page>
     <h1>Hello, <#if user??>${name}<#else>guest</#if>!</h1>
-    <div>It's a Car registration application</div>
+    <div>It's a Course registration application</div>
 </@pt.page>

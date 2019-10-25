@@ -1,7 +1,6 @@
 package by.itstep.vasilevskij.domain;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -9,13 +8,13 @@ import java.time.LocalDate;
 
 @Data
 @Entity
+@SequenceGenerator(name = "port_gen", sequenceName = "port_gen",  initialValue = 5)
 public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @UniqueElements
     @NotBlank(message = "Заполни поле")
     private String courseName;
 
