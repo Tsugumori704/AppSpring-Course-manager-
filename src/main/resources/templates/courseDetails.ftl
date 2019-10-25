@@ -28,7 +28,7 @@
 
                     <div class="form-group mt-2">
                         <button type="submit" class="btn btn-primary">
-                            sign up
+                            join the course
                         </button>
                     </div>
                     <input type="hidden" name="_csrf" value="${_csrf.token}" />

@@ -41,9 +41,9 @@ public class CourseController {
     }
 
     @PostMapping("{course}")
-    public String courseSignUp(@Valid CourseGroup courseGroup,
-                               @PathVariable Course course,
-                               @AuthenticationPrincipal User user){
+    public String courseJoinUser(@Valid CourseGroup courseGroup,
+                                 @PathVariable Course course,
+                                 @AuthenticationPrincipal User user){
         courseGroup.setCourseId(course);
         courseGroup.setUserId(user);
 
